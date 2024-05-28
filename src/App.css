@@ -104,6 +104,7 @@ section {
 body {
   line-height: 1;
   position: relative;
+  background-color: rgb(21,29,39);
 }
 ol,
 ul {
@@ -124,7 +125,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
+body, h1, h2, h3, h4, h5, h6, p, a, span{
+  color: white;
+}
 * {
   box-sizing: border-box;
 }
@@ -132,6 +135,12 @@ table {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.container{
+  max-width: 70rem;
+  padding: 0 1rem;
+  margin: 0 auto;
 }
 
 
@@ -151,4 +160,6 @@ a {
     opacity: 100%;
     transform: initial;
   }
+
+
 }
