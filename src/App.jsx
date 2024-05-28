@@ -5,7 +5,6 @@ import Loja from './Components/Pages/Loja/Loja';
 import Header from './Components/Header/Header';
 
 function App() {
-
   return (  
   <GlobalStorage>
     <BrowserRouter>

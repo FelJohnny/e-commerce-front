@@ -41,18 +41,6 @@ export function GET_ALL(tableName) {
   };
 }
 
-//=================[autenticado] Retorna lista de usuarios====================//
- export function GET_ALL_USERS(tableName, token) {
-  return {
-    url: `${URL}/api/${tableName}`,
-    options: {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token} `,
-      },
-    },
-  };
-}
 
 //=================Retorna registro unico por ID====================//
 export function GET_TO_ID(tableName, id) {
@@ -72,12 +60,13 @@ export function GET_TO_ID(tableName, id) {
 
 
 //=================[autenticado] Retorna usuario unico====================//
-export function GET_AUTH_USER(tableName, token, id) {
+export function GET_AUTH_USER(token, id) {
   return {
-    url: `${URL}/api/${tableName}/${id}`,
+    url: `${URL}/api/auth/login/${id}`,
     options: {
       method: "GET",
       headers: {
+        Accept: "application/json",
         Authorization: `Bearer ${token} `,
       },
     },
