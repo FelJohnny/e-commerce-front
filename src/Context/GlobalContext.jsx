@@ -28,6 +28,8 @@ export const GlobalStorage = ({ children }) => {
       rule: ''
     });
     window.localStorage.removeItem('token')
+    //window.location.reload();
+
   }
 
 

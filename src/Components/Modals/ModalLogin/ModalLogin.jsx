@@ -1,11 +1,11 @@
 import style from './ModalLogin.module.css'
-import { GlobalContext } from '../../Context/GlobalContext.jsx'
+import { GlobalContext } from '../../../Context/GlobalContext.jsx'
 import React, { useContext, useRef, useState } from 'react'
-import useForm from '../../Hooks/useForm.jsx'
-import {GET_AUTH_USER, POST_LOGIN} from '../../Api/api.js'
-import InputForm from '../../Components/Inputs/InputText/InputForm.jsx'
+import useForm from '../../../Hooks/useForm.jsx'
+import {GET_AUTH_USER, POST_LOGIN} from '../../../Api/api.js'
+import InputForm from '../../Inputs/InputText/InputForm.jsx'
 import { jwtDecode } from 'jwt-decode'
-import useFetch from '../../Hooks/useFetch.jsx'
+import useFetch from '../../../Hooks/useFetch.jsx'
 
 
 
@@ -91,7 +91,7 @@ const ModalLogin = () => {
         />
         <div className={style.options}>
         <p>Esqueci a senha</p>
-        <p onClick={()=> setAtivaModal('cadastro')}>Não possuo uma conta</p>
+        <p onClick={()=> setAtivaModal('cadastroUsuario')}>Não possuo uma conta</p>
         </div>
         {error&&<span>{error}</span>}
         <button className={style.btn} onClick={handleSubmit}>{loading? 'carregando...':'Entrar'}</button>

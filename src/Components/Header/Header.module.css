@@ -3,6 +3,7 @@ header{
     flex-wrap: wrap;
     box-shadow: 0px 0px 0px 1px rgb(38,50,65);    
     padding: 20px;
+    min-height: 90px;
 }
 
 .nav{

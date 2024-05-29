@@ -5,6 +5,14 @@
     gap: 16px;
 }
 
+.containerLoading{
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 1075px) {
     .loja{
         grid-template-columns: 1fr 1fr;

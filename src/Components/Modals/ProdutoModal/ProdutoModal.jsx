@@ -1,13 +1,18 @@
 import React, { useContext } from 'react'
 import styles from './ProdutoModal.module.css'
-import { GlobalContext } from '../../Context/GlobalContext';
+import { GlobalContext } from '../../../Context/GlobalContext.jsx';
 
 const ProdutoModal = ({produto}) => {
     const {id, nome,preco, status, capa_produto,url_img_produto} = produto;
-    const { setAtivaModal} = useContext(GlobalContext);
+    const { setAtivaModal,userAuth } = useContext(GlobalContext);
 
     function abrirProd(){
-      setAtivaModal('login')
+
+      if(userAuth.status){
+        console.log('logado');
+      }else{
+        setAtivaModal('login')
+      }
     }
   return (
     <div className={styles.produto}>
