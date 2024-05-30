@@ -1,19 +1,31 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styles from './ProdutoModal.module.css'
 import { GlobalContext } from '../../../Context/GlobalContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const ProdutoModal = ({produto}) => {
     const {id, nome,preco, status, capa_produto,url_img_produto} = produto;
-    const { setAtivaModal,userAuth } = useContext(GlobalContext);
+    const { setAtivaModal, userAuth, setCurrentProduto } = useContext(GlobalContext);
+    const navigate = useNavigate()
 
     function abrirProd(){
 
-      if(userAuth.status){
-        console.log('logado');
+      if(!userAuth.status){
+        setAtivaModal('cadastroUsuario')
       }else{
-        setAtivaModal('login')
+        setCurrentProduto({
+          id: id,
+          nome: nome,
+          preco: preco,
+          status: status,
+          capa_produto: capa_produto,
+          url_img_produto: url_img_produto,
+        });
+        navigate(`/produto/${id}`)
       }
+      
     }
+    
   return (
     <div className={styles.produto}>
       <img src={url_img_produto} alt={`Imagem_produto${id}`} />

@@ -10,7 +10,7 @@ import PopUp from '../../PopUp/PopUp.jsx'
 import Loading from '../../Loading/Loading.jsx'
 const Loja = () => {
   const {data,loading,error, request, setLoading} = useFetch();
-  const { ativaModal, setAtivaModal,popUp, setPopUp } = useContext(GlobalContext);
+  const { popUp } = useContext(GlobalContext);
   
   useEffect(()=>{
     async function getProdutos(){

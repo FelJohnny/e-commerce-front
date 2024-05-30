@@ -1,0 +1,134 @@
+.produto {
+    display: grid;
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.capaPrincipal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0px 0px 0px 1px rgb(38,50,65);    
+    min-height: 600px;
+    padding: 20px;
+}
+
+.imgProduto {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: center;
+    background-color: #263241;
+}
+
+.descricoes {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.descricoes h1 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 600;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.descricoes p, ul{
+    font-size: 0.8rem
+}
+
+.descricoes li{
+    list-style: circle;
+}
+.precoContainer {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.precoOriginal {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.precoAtual {
+    font-size: 1.5rem;
+    color: #E60000;
+    font-weight: bold;
+}
+
+.desconto {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.atributos {
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.addCarrinhoContainer {
+    display: flex;
+    align-items: start;
+    margin-top: 20px;
+    gap: 50px;
+}
+
+.button {
+    background-color: #01426A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: rgb(6,116,155);
+}
+
+.descricao {
+    margin-top: 20px;
+}
+
+.descricao h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.descricao p, .descricao ul {
+    margin-bottom: 10px;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.descricao ul {
+    padding-left: 20px;
+}
+
+.descricao ul li {
+    margin-bottom: 5px;
+}
+
+.preco {
+    color: #35daf0;
+}
+
+@media (max-width: 1200px) {
+    .capaPrincipal {
+        grid-template-columns: 1fr;
+        width: auto;
+    }
+    .produto {
+        width: auto;
+    }
+}

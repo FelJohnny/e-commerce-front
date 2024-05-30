@@ -1,0 +1,25 @@
+.quantidadeButton {
+    width: 40px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #01426A;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+.quantidadeButton:hover {
+  background-color: rgb(6,116,155);
+}
+  
+  .quantidadeNumber {
+    background-color: #263241;
+    padding: 0 15px;
+    font-size: 20px;
+  }
+  .texto{
+    margin-top: 8px;
+    text-align: center;
+  }

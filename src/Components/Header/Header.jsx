@@ -5,8 +5,12 @@ import { jwtDecode } from 'jwt-decode';
 import { GET_AUTH_USER } from '../../Api/api';
 import useFetch from '../../Hooks/useFetch';
 import Loading from '../Loading/Loading';
+import ModalHeaderOptions from '../Modals/ModalHeaderOptions/ModalHeaderOptions';
+import { Link } from "react-router-dom";
+import SVG_verMais from '../../../public/images/verMais.svg'
+
 const Header = () => {
-  const { setAtivaModal, setUserAuth,userAuth, popUp, setPopUp, logout} = useContext(GlobalContext);
+  const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, setPopUp, logout} = useContext(GlobalContext);
 
   const { data, loading, setLoading, error, request,setError } = useFetch();
 
@@ -22,13 +26,9 @@ const Header = () => {
           if (response.ok) {
             setUserAuth({ token: token, usuario: json.retorno, status: true, rule:json.retorno.rule_id });
           } else {
-            console.log('teste');
-            stop()
             logout();
           }
         } catch (error) {
-          console.log('teste');
-          stop()
           logout();
         }
       }else{
@@ -38,14 +38,36 @@ const Header = () => {
     fetchValidaToken();
   }, []);
 
+  function handleClick(){
+    setAtivaModal('headerOptions')
+    if(ativaModal==='headerOptions'){
+      setAtivaModal('')
+    }
+  }
   return (
     <header>
       <nav className={`${styles.nav}`}>
-        <h3>Store Happy Mongose</h3>
+        <Link to={'/'}><h3>Store Happy Mongose</h3></Link>
         <input type="text" placeholder='Busque seu jogo aqui'/>
         {loading&& <Loading/>}
-        {!userAuth.status && !loading && <button onClick={()=> setAtivaModal('login')}>Entrar</button>}
-        {userAuth.status && !loading && <p>{userAuth.usuario.nome_completo}</p>}
+        {!userAuth.status && !loading && (
+          <div className={styles.buttonsWrapper}>
+            <button onClick={()=> setAtivaModal('cadastroUsuario')}>Cadastre-se</button>
+            <button onClick={()=> setAtivaModal('login')}>Entrar</button>
+          </div>
+        )
+          }
+        {userAuth.status && !loading && 
+          <>
+            <div className={styles.usuarioLogado} onClick={handleClick}>
+              <p>
+                Bem Vindo, {userAuth.usuario.nome_completo} 
+              </p>
+              <img src={SVG_verMais} alt="Ver Mais" className={`${styles.vermais} ${ativaModal === 'headerOptions' ? styles.rotate : ''}`} />
+              {ativaModal ==='headerOptions' && <ModalHeaderOptions />}
+            </div>
+          </>        
+        }
         
       </nav>
     </header>

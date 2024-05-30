@@ -5,12 +5,13 @@ import useFetch from "../../../Hooks/useFetch";
 import { POST_REGISTER} from "../../../Api/api";
 import { GlobalContext } from "../../../Context/GlobalContext.jsx";
 import InputForm from "../../Inputs/InputText/InputForm.jsx";
+import Loading from "../../Loading/Loading.jsx"
 
 const CadastroUsuario = () => {
   const { setPopUp,ativaModal, setAtivaModal } = useContext(GlobalContext);
   const [cadastroRealizado, setCadastroRealizado] = useState(false);
-  const modalContainerPost = useRef(null);
-  const CloseContainerPost = useRef(null);
+  const modalContainerCadUsuario = useRef(null);
+  const btnClose = useRef(null)
   const nameForm = useForm();
   const emailForm = useForm("email");
   const senhaForm = useForm("senha");
@@ -18,14 +19,9 @@ const CadastroUsuario = () => {
   const { request, data, loading, error } = useFetch();
 
   function closeModal(event) {
-    event.preventDefault();
-    if (
-      event.target === modalContainerPost.current ||
-      event.target === CloseContainerPost.current
-    ) {
-      setAtivaModal("");
-      const overflow = document.querySelector("body");
-      overflow.classList.remove("overFlow");
+    event.preventDefault()
+    if(event.target == modalContainerCadUsuario.current || event.target == btnClose.current){
+      setAtivaModal('')
     }
   }
 
@@ -72,21 +68,11 @@ const CadastroUsuario = () => {
 
   if(ativaModal === 'cadastroUsuario')
   return (
-    <section
-      onClick={closeModal}
-      ref={modalContainerPost}
-      className={styles.containerModal}
-    >
-      <form ref={formRef} className={`${styles.containerForm} animation-opacity`}>
-        {loading ? (<LoadingCenterComponent />) : (<div className={styles.cadastroUsuario}>
-              <div className={styles.header}>
-                <button
-                  closeModal={closeModal}
-                  CloseContainerPost={CloseContainerPost}
-                >fechar</button>
-              </div>
-
-              <InputForm
+    <div  ref={modalContainerCadUsuario} onClick={closeModal} className={styles.containerModal}>
+      <form  className={styles.modal}>
+        <button ref={btnClose} onClick={closeModal} className={styles.close}>X</button>
+        <h1>Cadastre-se</h1>
+        <InputForm
                 label="Nome Completo*"
                 type="text"
                 id="nome"
@@ -109,27 +95,20 @@ const CadastroUsuario = () => {
                 gridColumn="2/4"
                 {...senhaForm}
               />
-
-              <span
+              <p
                 className={styles.possuiConta}
                 onClick={() => {
                   setAtivaModal("login");
                 }}
               >
                 Ja possuo uma conta
-              </span>
-              <button handleSubmit={handleSubmit}>
+              </p>
+              <button onClick={handleSubmit} className={styles.btn}>
                 {loading ? "Salvando..." : "Salvar"}
               </button>
-            </div>
-          
-        )}
+              
       </form>
-
-      {/* {cadastroRealizado && (
-        <ModalAlert title="Cadastro Realizado" mensagem="Cadastrar serviço?" />
-      )} */}
-    </section>
+    </div>
   );
 };
 

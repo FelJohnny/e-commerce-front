@@ -20,6 +20,15 @@ export const GlobalStorage = ({ children }) => {
     rule: ''
   });
 
+  const [currentProduto, setCurrentProduto]=useState({
+    id: null,
+    nome: null,
+    preco: null,
+    status: null,
+    capa_produto:null,
+    url_img_produto:null,
+  })
+
   function logout() {
     setUserAuth({
       token: "",
@@ -28,8 +37,6 @@ export const GlobalStorage = ({ children }) => {
       rule: ''
     });
     window.localStorage.removeItem('token')
-    //window.location.reload();
-
   }
 
 
@@ -43,6 +50,8 @@ export const GlobalStorage = ({ children }) => {
         popUp,
         setPopUp,
         logout,
+        currentProduto,
+        setCurrentProduto
       }}
     >
       {children}

@@ -23,6 +23,9 @@
   width: 100%;
 }
 
+.input:focus{
+    color: white;
+}
 
 
 textarea.input{
