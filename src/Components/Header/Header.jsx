@@ -7,7 +7,7 @@ import useFetch from '../../Hooks/useFetch';
 import Loading from '../Loading/Loading';
 import ModalHeaderOptions from '../Modals/ModalHeaderOptions/ModalHeaderOptions';
 import { Link } from "react-router-dom";
-import SVG_verMais from '../../../public/images/verMais.svg'
+import SVG_verMais from '../../../images/verMais.svg'
 
 const Header = () => {
   const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, setPopUp, logout} = useContext(GlobalContext);

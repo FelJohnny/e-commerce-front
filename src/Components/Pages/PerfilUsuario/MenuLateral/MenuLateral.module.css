@@ -1,0 +1,36 @@
+.menuLateral{
+    display: grid;
+    grid-template-rows: 50px 50px;
+    height:400px ;
+    gap: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.212);
+    border-radius: 10px;
+    background-color: #10161e;
+}
+.btnAtivo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #06749b;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #263241;
+    color: white;
+    border-radius: 5px;
+}
+
+
+@media(max-width:750px){
+    .menuLateral{
+        height: auto;
+        width: 95vw;
+        margin: 0 auto;
+    }
+}
