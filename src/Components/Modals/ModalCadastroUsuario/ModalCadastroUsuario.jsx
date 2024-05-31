@@ -16,7 +16,7 @@ const CadastroUsuario = () => {
   const emailForm = useForm("email");
   const senhaForm = useForm("senha");
 
-  const { request, data, loading, error } = useFetch();
+  const { request, data, loading, error,setError } = useFetch();
 
   function closeModal(event) {
     event.preventDefault()
@@ -41,11 +41,11 @@ const CadastroUsuario = () => {
       };
 
       async function postUser() {
-        const { url, options } = POST_REGISTER("usuarios", dataUsuario);
-        const userRequest = await request(url, options);
-        if (userRequest.response.ok) {
+        const { url, options } = POST_REGISTER(dataUsuario);
+        console.log(options);
+        const { response } = await request(url, options);
+        if (response.ok) {
           console.log('cadastro criado');
-          setStatusCadastro(userRequest.json.message);
           nameForm.reset();
           emailForm.reset();
           senhaForm.reset();
@@ -54,6 +54,17 @@ const CadastroUsuario = () => {
             color: "#46bba2",
             children: "Cadastro realizado com sucesso"
           });
+          setAtivaModal('')
+          setTimeout(()=>{
+            setPopUp({
+              status:false,
+              color: "",
+              children: ""
+            })
+          },1000)
+        }else{
+        console.log(response);
+          
         }
       }
       postUser();
@@ -63,6 +74,13 @@ const CadastroUsuario = () => {
         color: "#d43328",
         children: "Preencha corretamente os campos necessarios"
       });
+      setTimeout(()=>{
+        setPopUp({
+          status:false,
+          color: "",
+          children: ""
+        })
+      },2000)
     }
   }
 
