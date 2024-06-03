@@ -41,6 +41,18 @@ export function GET_ALL(tableName) {
   };
 }
 
+export function GET_ALL_PAGE(tableName,page) {
+  return {
+    url: `${URL}/api/${tableName}/?page=${page}`,
+    options: {
+      method: "GET",
+      Headers: {
+        Accept: "application/json",
+      },
+    },
+  };
+}
+
 
 //=================Retorna registro unico por ID====================//
 export function GET_TO_ID(tableName, id) {
@@ -54,11 +66,6 @@ export function GET_TO_ID(tableName, id) {
     },
   };
 }
-
-
-
-
-
 //=================[autenticado] Retorna usuario unico====================//
 export function GET_AUTH_USER(token, id) {
   return {
@@ -72,8 +79,6 @@ export function GET_AUTH_USER(token, id) {
     },
   };
 }
-
-
 //=================Retorna lista de join ATIVOS com relação entre tabelas====================//
 export function GET_INNER(tableName1, tableName2,page) {
   return {
@@ -85,11 +90,15 @@ export function GET_INNER(tableName1, tableName2,page) {
 }
 
 //=================Retorna lista de join TOTAL entre duas entidades====================//
-export function GET_INNER_ALL(tableName1, tableName2,page) {
+export function GET_PRODUTOS_POR_USUARIO(id,token) {
   return {
-    url: `${URL}/api/${tableName1}/?page=${page}`,
+    url: `${URL}/api/produto/usuario/${id}`,
     options: {
-      method: "GET"
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token} `,
+      },
     },
   };
 }

@@ -6,11 +6,14 @@ import { GET_AUTH_USER } from '../../Api/api';
 import useFetch from '../../Hooks/useFetch';
 import Loading from '../Loading/Loading';
 import ModalHeaderOptions from '../Modals/ModalHeaderOptions/ModalHeaderOptions';
+import ModalLogin from '../Modals/ModalLogin/ModalLogin';
+import ModalCadastroUsuario from '../Modals/ModalCadastroUsuario/ModalCadastroUsuario'
 import { Link } from "react-router-dom";
 import SVG_verMais from '../../../images/verMais.svg'
+import PopUp from '../PopUp/PopUp';
 
 const Header = () => {
-  const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, setPopUp, logout} = useContext(GlobalContext);
+  const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, logout} = useContext(GlobalContext);
 
   const { data, loading, setLoading, error, request,setError } = useFetch();
 
@@ -45,6 +48,7 @@ const Header = () => {
     }
   }
   return (
+  <>
     <header>
       <nav className={`${styles.nav}`}>
         <Link to={'/'}><h3>Store Happy Mongose</h3></Link>
@@ -56,7 +60,7 @@ const Header = () => {
             <button onClick={()=> setAtivaModal('login')}>Entrar</button>
           </div>
         )
-          }
+      }
         {userAuth.status && !loading && 
           <>
             <div className={styles.usuarioLogado} onClick={handleClick}>
@@ -71,6 +75,11 @@ const Header = () => {
         
       </nav>
     </header>
+    <PopUp status={popUp.status} color={popUp.color}>{popUp.children}</PopUp>
+    <ModalCadastroUsuario/>
+    <ModalLogin/>
+  </>
+
   )
 }
 

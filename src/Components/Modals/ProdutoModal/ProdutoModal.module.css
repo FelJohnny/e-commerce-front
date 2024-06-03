@@ -1,8 +1,7 @@
 .produto{
     display: grid;
-    min-width: 300px;
-    grid-template-rows: 250px 115px;
-    max-height: 365px;
+    width: 350px;
+    grid-template-rows: 250px auto+10px;
     align-items: center;
     margin-bottom: 2rem;
     background-color: rgb(38,50,65);
@@ -14,7 +13,7 @@
 .produto img{
     background-color: rgb(202, 202, 202);
     border-radius:4px 4px 0 0 ;
-    max-height: 250px;
+    height: 250px;
     object-fit:cover;
     width: 100%;
     border-image-slice: fill;
@@ -30,12 +29,10 @@
     font-size: 1.7rem;
     text-align: center;
     flex-basis: 350px;
-    min-height: 50px;
 }
 
 .infoProduto2{
     display: flex;
-    
     width: 100%;
     justify-content: space-around;
     align-items: center;
@@ -56,7 +53,6 @@
     cursor: pointer;
     transition: 0.3s;
     font-size: 1rem;
-
 }
 
 .infoProduto button:hover{

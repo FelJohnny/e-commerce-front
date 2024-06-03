@@ -22,7 +22,7 @@ const useFetch = () => {
     } finally {
       setTimeout(()=>{
         setLoading(false);
-      },1000)
+      },0)
       return { response, json, data,error };
     }
   }, []);
