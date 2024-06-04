@@ -37,7 +37,8 @@ textarea.input{
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background-color: #e8e8e8;
+  background-color: #264b6e;
+  border-radius: 10px;
   padding: 20px;
   min-height: 400px;
   position: relative;

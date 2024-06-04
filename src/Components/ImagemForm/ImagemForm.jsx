@@ -24,30 +24,30 @@ const ImagemForm = ({ label, name, setPostImg, setRegexPostImg, imageExistente }
 
   return (
     <>
-    <div className={style.wrapper}>
-      <label htmlFor={name} className={style.label}>
-        {label}
-      <div className={style.preview}>
-        <input
-          ref={filesElement}
-          className={style.inputImage}
-          id={name}
-          type="file"
-          onChange={handleChange}
-          
-          />
-        {!image&& imageExistente&&(
-          <img htmlFor={name} className={style.previewImg} src={imageExistente} alt="" />
-        )}
-        {!image&& !imageExistente&&(
-          <img htmlFor={name} className={style.plus} src={plus} alt="" />
-        )}
-        {image && (
-          <img className={style.previewImg} src={image} alt="preview" />
-        )}
+      <div className={style.wrapper}>
+        <label htmlFor={name} className={style.label}>
+          {label}
+        <div className={style.preview}>
+          <input
+            ref={filesElement}
+            className={style.inputImage}
+            id={name}
+            type="file"
+            onChange={handleChange}
+            
+            />
+          {!image&& imageExistente&&(
+            <img htmlFor={name} className={style.previewImg} src={imageExistente} alt="" />
+          )}
+          {!image&& !imageExistente&&(
+            <img htmlFor={name} className={style.plus} src={plus} alt="" />
+          )}
+          {image && (
+            <img className={style.previewImg} src={image} alt="preview" />
+          )}
+        </div>
+        </label>
       </div>
-      </label>
-    </div>
     </>
 
   );

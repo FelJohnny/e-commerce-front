@@ -90,6 +90,7 @@ const MeusProdutos = () => {
         mensagem="Tem certeza que deseja deletar este Produto?"
         id={idToDelete}
         table='produto'
+        nomeProd={nomeProd}
         setProdutos={setProdutos}
       />}
       {ativaModal === 'confirmUpdate' && idToUpdate && 

@@ -79,15 +79,7 @@ export function GET_AUTH_USER(token, id) {
     },
   };
 }
-//=================Retorna lista de join ATIVOS com relação entre tabelas====================//
-export function GET_INNER(tableName1, tableName2,page) {
-  return {
-    url: `${URL}/api/${tableName1}/${tableName2}/?page=${page}`,
-    options: {
-      method: "GET"
-    },
-  };
-}
+
 
 //=================Retorna lista de join TOTAL entre duas entidades====================//
 export function GET_PRODUTOS_POR_USUARIO(id,token) {
@@ -99,16 +91,6 @@ export function GET_PRODUTOS_POR_USUARIO(id,token) {
         Accept: "application/json",
         Authorization: `Bearer ${token} `,
       },
-    },
-  };
-}
-
-//=================Retorna dado unico com inner join====================//
-export function GET_INNER_ID(tableName1, tableName2,id) {
-  return {
-    url: `${URL}/api/${tableName1}/${tableName2}/${id}`,
-    options: {
-      method: "GET"
     },
   };
 }
@@ -128,16 +110,15 @@ export function POST_DATA_NOVO_PRODUTO(tableName,token, formData){
 }
 
 //=================[autenticado] Atualiza registro====================//
-export function UPDATE_DATA(tableName, updateData, id, token) {
+export function UPDATE_DATA(tableName,id, token,formData) {
   return {
-    url: `${URL}/api/${tableName}/${id}`,
+    url:`${URL}/api/${tableName}/${id}`,
     options: {
       method: "PUT",
+      body: formData,
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token} `,
       },
-      body: JSON.stringify(updateData),
     },
   };
 }

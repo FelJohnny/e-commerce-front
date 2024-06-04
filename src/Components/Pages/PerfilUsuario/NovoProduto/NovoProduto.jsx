@@ -40,7 +40,6 @@ const NovoProduto = () => {
       if(token){
       const { url, options } = POST_DATA_NOVO_PRODUTO("produto",token, formData);
       const {response} = await requestForm(url, options); 
-      console.log(options);
       if(response.ok){
         setPopUp({
           status:true,
