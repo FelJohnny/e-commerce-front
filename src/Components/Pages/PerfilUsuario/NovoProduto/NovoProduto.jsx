@@ -13,7 +13,7 @@ const NovoProduto = () => {
   const [postImg, setPostImg]= useState()
   const [regexPostImg, setRegexPostImg] = useState(false)
   const navigate = useNavigate();
-  const { dataForm, loadingForm,setLoadingForm, errorForm, requestForm } = useFetch_FormData();
+  const { requestForm,loading } = useFetch_FormData();
 
   const nome = useForm()
   const preco = useForm()
@@ -120,7 +120,7 @@ const NovoProduto = () => {
             />
             {regexPostImg&& <p className={styles.error}>Insira uma imagem!</p>}
 
-            <button>Cadastrar</button>
+            {!loading ? <button>Cadastrar</button>: <Loading/>}
           </form>
         )}
       </div>
