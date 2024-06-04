@@ -5,6 +5,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import MeusProdutos from './MeusProdutos/MeusProdutos.jsx'
 import MeusDados from './MeusDados/MeusDados.jsx'
 import NovoProduto from './NovoProduto/NovoProduto.jsx';
+import AlterarProduto from './AlterarProduto/AlterarProduto.jsx';
 const PerfilUsuario = () => {
 
   return (
@@ -21,6 +22,7 @@ const PerfilUsuario = () => {
                  <Route path='meus_dados' element={<MeusDados/>}/>
                 <Route path='produtos' element={<MeusProdutos/>}/> 
                 <Route path='produtos/cadastro' element={<NovoProduto/>}/> 
+                <Route path='produtos/altera' element={<AlterarProduto/>}/> 
             </Routes>
         
         </section>

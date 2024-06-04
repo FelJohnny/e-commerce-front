@@ -3,14 +3,14 @@ import styles from "./Confirm.module.css";
 import { DELETE_DATA, GET_PRODUTOS_POR_USUARIO } from "../../Api/api.js";
 import useFetch from "../../Hooks/useFetch";
 import { GlobalContext } from "../../Context/GlobalContext.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Loading from "../Loading/Loading.jsx";
 
-const Confirm = ({ mensagem, id, setAtivaModal, table,nomeProd,setProdutos}) => {
+const Confirm = ({ mensagem, id, table,nomeProd,setProdutos}) => {
   const { request, loading } = useFetch();
   const modalConfirm = useRef(null)
-  const { setPopUp } = useContext(GlobalContext);
+  const { setPopUp,ativaModal, setAtivaModal } = useContext(GlobalContext);
   const navigate = useNavigate();
 
 
@@ -20,7 +20,6 @@ const Confirm = ({ mensagem, id, setAtivaModal, table,nomeProd,setProdutos}) => 
       setAtivaModal('')
     }
   }
-
   async function handleDelete() {
     const token = window.localStorage.getItem("token");
     async function deleteData() {
@@ -101,13 +100,22 @@ const Confirm = ({ mensagem, id, setAtivaModal, table,nomeProd,setProdutos}) => 
           >
             Voltar
           </button>
-          <button
+          {ativaModal ==='confirmDelete'&&<button
             className={styles.btnDelete}
             type="button"
             onClick={handleDelete}
           >
             Deletar
-          </button>
+          </button>}
+          {ativaModal ==='confirmUpdate'&& 
+          <Link to={"altera"}>
+            <button
+              className={styles.btnUpdate}
+              type="button"
+              >
+              Sim
+            </button>
+          </Link>}
       
         </div>}
       </div>

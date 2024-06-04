@@ -16,8 +16,8 @@ const ModalHeaderOptions = () => {
   return (
     <nav className={`${styles.containerModal+' '+styles.animationUpButton} `}>
       <ul className={styles.options}>
-        <li><Link to='perfil/meus_dados'>Meu Perfil</Link></li>
-        <li><Link to='perfil/produtos'> Meus Produtos</Link></li>
+        <Link to='perfil/meus_dados'><li>Meu Perfil</li></Link>
+        <Link to='perfil/produtos'><li> Meus Produtos</li></Link>
         {/* {userAuth.rule === 3 && <li onClick={()=>navigate('/adm')}>Painel de Controle</li>} */}
         <li onClick={logout}>Sair</li>
       </ul>

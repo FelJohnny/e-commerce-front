@@ -13,10 +13,11 @@ import { formataData } from '../../../../functions/formataData.js';
 
 const MeusProdutos = () => {
   
-  const { logout, setAtivaModal, ativaModal } = useContext(GlobalContext);
+  const { logout, setAtivaModal, ativaModal, setDataUpdate } = useContext(GlobalContext);
   const {request, loading, error,} = useFetch()
   const [produtos, setProdutos] = useState([])
   const [idToDelete, setIdToDelete] = useState(null);
+  const [idToUpdate, setIdToUpdate] = useState(null);
   const [nomeProd, setNomeProd]=useState(null)
   const navigate = useNavigate();
 
@@ -39,13 +40,23 @@ const MeusProdutos = () => {
     pegaProdutosPorUsuario()
   },[])
 
-  const confirmDelete = (id, nomeProd) => {
-    if(id){
-      setIdToDelete(id);
-      setNomeProd(nomeProd)
+  const confirmUpdate = (produto) => {
+    if(produto.id){
+      setIdToUpdate(produto.id);
+      setNomeProd(produto.nome)
+      setAtivaModal("confirmUpdate");
+      setDataUpdate(produto)
+    }
+  };
+
+  const confirmDelete = (produto) => {
+    if(produto.id){
+      setIdToDelete(produto.id);
+      setNomeProd(produto.nome)
       setAtivaModal("confirmDelete");
     }
   };
+
   return (
     <div className={styles.MeusProdutos}>
       <div className={styles.cabecalho}>
@@ -66,8 +77,8 @@ const MeusProdutos = () => {
               <span className={styles.updatedAt}>ultima atulização:{formataData(produto.updatedAt)}</span>
               <div className={styles.buttons}>
                 <button>Visualizar</button>
-                <button>Alterar</button>
-                <button onClick={()=>confirmDelete(produto.id, produto.nome)}>Excluir</button>
+                <button onClick={()=>confirmUpdate(produto)}>Alterar</button>
+                <button onClick={()=>confirmDelete(produto)}>Excluir</button>
               </div>
             </div>
            ))}
@@ -78,7 +89,13 @@ const MeusProdutos = () => {
       <Confirm
         mensagem="Tem certeza que deseja deletar este Produto?"
         id={idToDelete}
-        setAtivaModal={setAtivaModal}
+        table='produto'
+        setProdutos={setProdutos}
+      />}
+      {ativaModal === 'confirmUpdate' && idToUpdate && 
+      <Confirm
+        mensagem="Deseja Alterar este produdo?"
+        id={idToDelete}
         nomeProd={nomeProd}
         table='produto'
         setProdutos={setProdutos}

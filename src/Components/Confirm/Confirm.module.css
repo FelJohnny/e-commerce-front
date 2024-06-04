@@ -57,8 +57,18 @@
 .btnDelete:hover{
   scale: 1.1;
   background-color: rgb(161, 27, 27);
-
 }
+
+.btnUpdate{
+  background-color: rgb(26, 134, 93);
+  font-weight: bold;
+}
+
+.btnUpdate:hover{
+  scale: 1.1;
+  background-color: rgb(16, 202, 131);;
+}
+
 .close {
     position: absolute;
     display: flex;

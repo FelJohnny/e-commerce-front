@@ -40,6 +40,8 @@ export const GlobalStorage = ({ children }) => {
   }
 
 
+  const [dataUpdate, setDataUpdate] = useState(null);
+
   return (
     <GlobalContext.Provider
       value={{  
@@ -51,7 +53,9 @@ export const GlobalStorage = ({ children }) => {
         setPopUp,
         logout,
         currentProduto,
-        setCurrentProduto
+        setCurrentProduto,
+        dataUpdate,
+        setDataUpdate
       }}
     >
       {children}

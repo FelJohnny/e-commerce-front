@@ -16,6 +16,7 @@ const Loja = () => {
       const {url, options} = GET_ALL_PAGE('produto',page)
       const {response, json, error} = await request(url,options);
       setProdutos(json)
+      setLastPage(json.paginacao.total_Pages)
     }
     getProdutos();
   },[])
@@ -25,11 +26,13 @@ const Loja = () => {
     setPage(page)
     const { url, options } = GET_ALL_PAGE("produto",page);
     const { json } = await request(url, options);
-    console.log(json);
-    setProdutos(json.servicos.retorno);
+    setProdutos(json);
     setLastPage(json.paginacao.total_Pages)
   }
 
+  useEffect(()=>{
+    console.log(produtos);
+  },[page])
   return (
     <>
       {error&& <p>Erro ao carregar produtos</p>}

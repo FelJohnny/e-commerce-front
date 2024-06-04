@@ -1,8 +1,8 @@
-import React, { useState,useRef } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import style from "./InputForm.module.css";
 import plus from "../../../images/plus.svg";
 
-const ImagemForm = ({ label, name, setPostImg, setRegexPostImg }) => {
+const ImagemForm = ({ label, name, setPostImg, setRegexPostImg, imageExistente }) => {
   const [image, setImage] = useState(null);
   const filesElement = useRef(null)
 
@@ -17,6 +17,8 @@ const ImagemForm = ({ label, name, setPostImg, setRegexPostImg }) => {
       };
       
       reader.readAsDataURL(selectImage);
+    
+
     }
   }
 
@@ -34,7 +36,10 @@ const ImagemForm = ({ label, name, setPostImg, setRegexPostImg }) => {
           onChange={handleChange}
           
           />
-        {!image&&(
+        {!image&& imageExistente&&(
+          <img htmlFor={name} className={style.previewImg} src={imageExistente} alt="" />
+        )}
+        {!image&& !imageExistente&&(
           <img htmlFor={name} className={style.plus} src={plus} alt="" />
         )}
         {image && (

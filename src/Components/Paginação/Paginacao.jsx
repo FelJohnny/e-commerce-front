@@ -10,7 +10,7 @@ const Paginacao = ({paginacao,page,lastPage}) => {
       <button type='button' disabled>{page}</button>
       {page + 1 <= lastPage ? <button type='button' onClick={()=> paginacao(page + 1)}>{page +1}</button>:''}
       {page + 2 <= lastPage ? <button type='button' onClick={()=> paginacao(page + 2)}>{page +2}</button>:''}
-      {page !== lastPage ?<button type='button' onClick={()=> paginacao(lastPage)}>ultima</button>: <button type='button' disabled>ultima</button>}
+      {page !== lastPage ? <button type='button' onClick={()=> paginacao(lastPage)}>ultima</button>: <button type='button' disabled>ultima</button>}
 </div>
   )
 }
