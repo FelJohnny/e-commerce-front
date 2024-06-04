@@ -113,18 +113,18 @@ export function GET_INNER_ID(tableName1, tableName2,id) {
   };
 }
 
-//=================Cria novo registro====================//
-export function POST_DATA(tableName, data) {
-  return {
-    url: `${URL}/api/${tableName}`,
-    options: {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+//=================Cria novo produto====================//
+export function POST_DATA_NOVO_PRODUTO(tableName,token, formData){
+  return{
+      url:`${URL}/api/${tableName}`,
+      options:{
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${token} `,
+        },
       },
-      body: JSON.stringify(data),
-    },
-  };
+  }
 }
 
 //=================[autenticado] Atualiza registro====================//

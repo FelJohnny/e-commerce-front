@@ -4,9 +4,11 @@ import {GlobalContext} from '../../../../Context/GlobalContext.jsx'
 import Loading from '../../../Loading/Loading.jsx'
 import {GET_PRODUTOS_POR_USUARIO} from '../../../../Api/api.js'
 import useFetch from '../../../../Hooks/useFetch.jsx'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import Confirm from '../../../Confirm/Confirm.jsx'
+import { formataData } from '../../../../functions/formataData.js';
+
 
 
 const MeusProdutos = () => {
@@ -48,7 +50,7 @@ const MeusProdutos = () => {
     <div className={styles.MeusProdutos}>
       <div className={styles.cabecalho}>
         <h1>Meus Produtos</h1>
-        <button>+ Cadastrar novo produto</button>
+        <Link to={'cadastro'}><button>+ Cadastrar novo produto</button></Link>
       </div>
       <div>
         {loading&& produtos ?
@@ -60,8 +62,8 @@ const MeusProdutos = () => {
               <img src={produto.url_img_produto} alt="" />
               <h1 className={styles.nome}>{produto.nome}</h1>
               <span className={styles.preco}>Preço: R${produto.preco}</span>
-              <span className={styles.createdAt}>criado em:{produto.createdAt}</span>
-              <span className={styles.updatedAt}>ultima atulização:{produto.updatedAt}</span>
+              <span className={styles.createdAt}>criado em:{formataData(produto.createdAt)}</span>
+              <span className={styles.updatedAt}>ultima atulização:{formataData(produto.updatedAt)}</span>
               <div className={styles.buttons}>
                 <button>Visualizar</button>
                 <button>Alterar</button>

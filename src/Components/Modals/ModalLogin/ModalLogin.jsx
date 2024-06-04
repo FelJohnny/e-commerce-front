@@ -1,6 +1,6 @@
 import style from './ModalLogin.module.css'
 import { GlobalContext } from '../../../Context/GlobalContext.jsx'
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import useForm from '../../../Hooks/useForm.jsx'
 import {GET_AUTH_USER, POST_LOGIN} from '../../../Api/api.js'
 import InputForm from '../../Inputs/InputText/InputForm.jsx'
@@ -20,12 +20,15 @@ const ModalLogin = () => {
 
   function closeModal(event){
     event.preventDefault()
-    if(event.target == modalLoginContainer.current || event.target == btnClose.current){
+    if(
+      event.target === modalLoginContainer.current || 
+      event.target === btnClose.current){
       setAtivaModal('')
     }
   }
 
-  function handleSubmit(){
+  function handleSubmit(event){
+    event.preventDefault();
     if (emailuser.validate() && password.validate() == true){
       const dataLogin={
         email: emailuser.value,
@@ -74,7 +77,7 @@ const ModalLogin = () => {
   if(ativaModal === 'login')
   return (
   <div  ref={modalLoginContainer} onClick={closeModal} className={style.containerModal}>
-      <form  className={style.modal}>
+      <form onSubmit={handleSubmit} className={style.modal} onClick={(e) => e.stopPropagation()}>
         <button ref={btnClose} onClick={closeModal} className={style.close}>X</button>
         <h1>Faça Login</h1>
         <InputForm
@@ -94,7 +97,7 @@ const ModalLogin = () => {
         <p onClick={()=> setAtivaModal('cadastroUsuario')}>Não possuo uma conta</p>
         </div>
         {error&&<span>{error}</span>}
-        <button className={style.btn} onClick={handleSubmit}>{loading? 'carregando...':'Entrar'}</button>
+        <button type="submit" className={style.btn}>{loading? 'carregando...':'Entrar'}</button>
 
       </form>
   </div>
