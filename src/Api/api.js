@@ -55,13 +55,14 @@ export function GET_ALL_PAGE(tableName,page) {
 
 
 //=================Retorna registro unico por ID====================//
-export function GET_TO_ID(tableName, id) {
+export function GET_TO_ID(tableName, id,token) {
   return {
     url: `${URL}/api/${tableName}/${id}`,
     options: {
       method: "GET",
-      Headers: {
+      headers: {
         Accept: "application/json",
+        Authorization: `Bearer ${token} `,
       },
     },
   };

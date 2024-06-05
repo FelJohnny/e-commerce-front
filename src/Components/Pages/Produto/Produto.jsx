@@ -1,12 +1,55 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './Produto.module.css';
 import { GlobalContext } from '../../../Context/GlobalContext.jsx';
 import Quantidade from '../../Quantidade/Quantidade.jsx';
+import { useNavigate, useParams } from 'react-router-dom';
+import useFetch from '../../../Hooks/useFetch.jsx';
+import {GET_TO_ID} from '../../../Api/api.js'
 
 const Produto = () => {
-    const { currentProduto } = useContext(GlobalContext);
+    const { setCurrentProduto, currentProduto, logout, carrinho, setCarrinho,quantidade } = useContext(GlobalContext);
+    const { request } = useFetch();
+    const navigate = useNavigate()
+    const { id } = useParams();
 
-    if (currentProduto)
+    useEffect(()=>{
+        async function pegaProdutoPorId(){
+            const token = window.localStorage.getItem("token");
+                if(token){
+                    const { url, options } = GET_TO_ID('produto',id, token)
+                    const { response, json } = await request(url, options)
+                    if(response.ok){
+                        setCurrentProduto(json)
+                    }else{
+                        navigate('/')
+                    }
+                }else{
+                    logout();
+                    navigate('/')
+                }
+        }
+        pegaProdutoPorId();
+    },[])
+    
+    function addCarrinho() {
+        const produtoExistente = carrinho.find(produto => produto.produto.id === currentProduto.id);
+
+        if (produtoExistente) {
+            const novoCarrinho = carrinho.map(produto => 
+                produto.produto.id === currentProduto.id ? 
+                { ...produto, quantidade: produto.quantidade + quantidade } 
+                    : produto
+            );
+            setCarrinho(novoCarrinho);
+        } else {
+            setCarrinho([...carrinho, { produto: currentProduto, quantidade }]);
+        }
+    }
+
+
+    useEffect(()=>{
+         console.log(carrinho);
+    },[carrinho])
     return (
         <section className={styles.produto}>
             <div className={styles.capaPrincipal}>
@@ -20,7 +63,7 @@ const Produto = () => {
                     </div>
                     <div className={styles.addCarrinhoContainer}>
                         <Quantidade />
-                        <button className={styles.button}>Adicionar ao Carrinho</button>
+                        <button className={styles.button} onClick={addCarrinho}>Adicionar ao Carrinho</button>
                     </div>
                     <div className={styles.descricao}>
                         <h2>Sobre:</h2>
@@ -41,8 +84,6 @@ const Produto = () => {
             </div>
         </section>
     );
-
-    return null;
 }
 
 export default Produto;

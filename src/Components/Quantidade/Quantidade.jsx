@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './Quantidade.module.css'
+import { GlobalContext } from '../../Context/GlobalContext';
 
 const Quantidade = () => {
-    const [quantidade, setQuantidade] = useState(1);
+    const { quantidade, setQuantidade} = useContext(GlobalContext);
 
     const incrementar = () => {
       setQuantidade(quantidade + 1);

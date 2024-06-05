@@ -30,9 +30,6 @@ const Loja = () => {
     setLastPage(json.paginacao.total_Pages)
   }
 
-  useEffect(()=>{
-    console.log(produtos);
-  },[page])
   return (
     <>
       {error&& <p>Erro ao carregar produtos</p>}

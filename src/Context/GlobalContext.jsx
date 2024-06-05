@@ -29,6 +29,8 @@ export const GlobalStorage = ({ children }) => {
     url_img_produto:null,
   })
 
+  const [carrinho, setCarrinho] = useState([])
+  
   function logout() {
     setUserAuth({
       token: "",
@@ -39,23 +41,22 @@ export const GlobalStorage = ({ children }) => {
     window.localStorage.removeItem('token')
   }
 
+  const [quantidade, setQuantidade] = useState(1);
 
+  //===========NECESSARIO PARA RENDERIZAR DADOS PARA ALTERAÇÃO
   const [dataUpdate, setDataUpdate] = useState(null);
 
   return (
     <GlobalContext.Provider
       value={{  
-        ativaModal,
-        setAtivaModal,
-        userAuth,
-        setUserAuth,
-        popUp,
-        setPopUp,
+        currentProduto, setCurrentProduto,
+        ativaModal, setAtivaModal,
+        dataUpdate, setDataUpdate,
+        userAuth, setUserAuth,
+        carrinho, setCarrinho,
+        quantidade, setQuantidade,
+        popUp, setPopUp,
         logout,
-        currentProduto,
-        setCurrentProduto,
-        dataUpdate,
-        setDataUpdate
       }}
     >
       {children}

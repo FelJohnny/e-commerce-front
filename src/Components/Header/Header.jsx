@@ -8,7 +8,7 @@ import Loading from '../Loading/Loading';
 import ModalHeaderOptions from '../Modals/ModalHeaderOptions/ModalHeaderOptions';
 import ModalLogin from '../Modals/ModalLogin/ModalLogin';
 import ModalCadastroUsuario from '../Modals/ModalCadastroUsuario/ModalCadastroUsuario'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SVG_verMais from '../../../images/verMais.svg'
 import PopUp from '../PopUp/PopUp';
 
@@ -16,13 +16,13 @@ const Header = () => {
   const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, logout} = useContext(GlobalContext);
 
   const { data, loading, setLoading, error, request,setError } = useFetch();
+  const navigate = useNavigate()
 
   //valida token
   useEffect(() => {
     async function fetchValidaToken() {
       const token = window.localStorage.getItem("token");
       if (token) {
-        try {
           const { id } =  jwtDecode(token);
           const { url, options } = await GET_AUTH_USER(token,id);
           const { response, json, data } = await request(url, options);
@@ -31,11 +31,10 @@ const Header = () => {
           } else {
             logout();
           }
-        } catch (error) {
-          logout();
-        }
+
       }else{
         logout();
+        navigate('/')
       }
     }
     fetchValidaToken();

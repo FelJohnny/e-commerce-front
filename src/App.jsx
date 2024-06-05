@@ -13,7 +13,7 @@ function App() {
       <Header/>
       <Routes>
         <Route exact path="/" element={<Loja />}/>
-        <Route exact path="/produto/*" element={<Produto />}/>
+        <Route exact path="/produto/:id" element={<Produto />}/>
         <Route exact path="/perfil/*" element={<PerfilUsuario />}/>
       </Routes>
     </BrowserRouter>
