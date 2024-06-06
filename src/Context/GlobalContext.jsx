@@ -31,6 +31,9 @@ export const GlobalStorage = ({ children }) => {
 
   const [carrinho, setCarrinho] = useState([])
   
+
+    const [qtdeCarrinho, setQtdeCarrinho]= useState(0)
+
   function logout() {
     setUserAuth({
       token: "",
@@ -39,6 +42,13 @@ export const GlobalStorage = ({ children }) => {
       rule: ''
     });
     window.localStorage.removeItem('token')
+    window.localStorage.removeItem('carrinho')
+  }
+
+  function calculaValorTotal() {
+    return carrinho.reduce((total, produto) => {
+      return total + (produto.produto.preco * produto.quantidade);
+    }, 0);
   }
 
   const [quantidade, setQuantidade] = useState(1);
@@ -57,6 +67,8 @@ export const GlobalStorage = ({ children }) => {
         quantidade, setQuantidade,
         popUp, setPopUp,
         logout,
+        qtdeCarrinho, setQtdeCarrinho,
+        calculaValorTotal,
       }}
     >
       {children}

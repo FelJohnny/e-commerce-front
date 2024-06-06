@@ -100,6 +100,7 @@ const Confirm = ({ mensagem, id, table,nomeProd,setProdutos}) => {
           >
             Voltar
           </button>
+          
           {ativaModal ==='confirmDelete'&&<button
             className={styles.btnDelete}
             type="button"
@@ -107,6 +108,7 @@ const Confirm = ({ mensagem, id, table,nomeProd,setProdutos}) => {
           >
             Deletar
           </button>}
+
           {ativaModal ==='confirmUpdate'&& 
           <Link to={"altera"}>
             <button

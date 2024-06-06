@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './Header.module.css'
 import { GlobalContext } from '../../Context/GlobalContext';
 import { jwtDecode } from 'jwt-decode';
@@ -10,12 +10,14 @@ import ModalLogin from '../Modals/ModalLogin/ModalLogin';
 import ModalCadastroUsuario from '../Modals/ModalCadastroUsuario/ModalCadastroUsuario'
 import { Link, useNavigate } from "react-router-dom";
 import SVG_verMais from '../../../images/verMais.svg'
+import SVG_cart from '../../../images/shopping_cart.svg'
 import PopUp from '../PopUp/PopUp';
+import ModalCarrinho from '../Modals/ModalCarrrinho/ModalCarrinho';
 
 const Header = () => {
-  const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, logout} = useContext(GlobalContext);
+  const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, logout, carrinho, setCarrinho, qtdeCarrinho, setQtdeCarrinho} = useContext(GlobalContext);
 
-  const { data, loading, setLoading, error, request,setError } = useFetch();
+  const { loading, request } = useFetch();
   const navigate = useNavigate()
 
   //valida token
@@ -28,6 +30,12 @@ const Header = () => {
           const { response, json, data } = await request(url, options);
           if (response.ok) {
             setUserAuth({ token: token, usuario: json.retorno, status: true, rule:json.retorno.rule_id });
+      
+            // Recuperar o carrinho do localStorage
+            const carrinhoLocalStorage = window.localStorage.getItem('carrinho');
+            if (carrinhoLocalStorage) {
+            setCarrinho(JSON.parse(carrinhoLocalStorage));
+        }
           } else {
             logout();
           }
@@ -46,6 +54,18 @@ const Header = () => {
       setAtivaModal('')
     }
   }
+
+  useEffect(()=>{
+    function calculaQtdeCarrinho(){
+      let qtde = 0
+      carrinho.forEach(produto=>{
+        qtde += produto.quantidade 
+        setQtdeCarrinho(qtde)
+      })
+    }
+    calculaQtdeCarrinho()
+    console.log(carrinho);
+  },[carrinho])
   return (
   <>
     <header>
@@ -61,7 +81,7 @@ const Header = () => {
         )
       }
         {userAuth.status && !loading && 
-          <>
+          <div className={styles.containerUsuarioLogado}>
             <div className={styles.usuarioLogado} onClick={handleClick}>
               <p>
                 Bem Vindo, {userAuth.usuario.nome_completo} 
@@ -69,7 +89,11 @@ const Header = () => {
               <img src={SVG_verMais} alt="Ver Mais" className={`${styles.vermais} ${ativaModal === 'headerOptions' ? styles.rotate : ''}`} />
               {ativaModal ==='headerOptions' && <ModalHeaderOptions />}
             </div>
-          </>        
+              <div className={styles.containerCart} onClick={()=> setAtivaModal("ModalCarrinho")}>
+                <span className={styles.qtdeCart}>{qtdeCarrinho}</span>
+                <img src={SVG_cart} alt="cart" className={styles.cart}/>
+              </div>
+          </div>        
         }
         
       </nav>
@@ -77,6 +101,7 @@ const Header = () => {
     <PopUp status={popUp.status} color={popUp.color}>{popUp.children}</PopUp>
     <ModalCadastroUsuario/>
     <ModalLogin/>
+    <ModalCarrinho/>
   </>
 
   )

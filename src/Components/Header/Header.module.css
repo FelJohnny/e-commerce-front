@@ -1,4 +1,3 @@
-
 header {
     display: flex;
     flex-wrap: wrap;
@@ -72,10 +71,41 @@ header button:hover {
     gap: 10px;
 }
 
+.containerUsuarioLogado{
+    display: flex;
+    gap: 40px;
+}
+
 .vermais {
     height: 10px; 
     fill: currentColor;
     transition: transform 0.3s ease;
+}
+
+.cart{
+    cursor: pointer;
+    height: 30px;
+}
+
+.containerCart{
+    position: relative;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.containerCart:hover{
+    scale: 1.05;
+}
+
+.qtdeCart{
+    position: absolute;
+    font-weight: bold;
+    top: -25px;
+    right: -20px;
+    color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 10px;
+    
 }
 
 .rotate {

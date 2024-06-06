@@ -7,7 +7,7 @@ import useFetch from '../../../Hooks/useFetch.jsx';
 import {GET_TO_ID} from '../../../Api/api.js'
 
 const Produto = () => {
-    const { setCurrentProduto, currentProduto, logout, carrinho, setCarrinho,quantidade } = useContext(GlobalContext);
+    const { setCurrentProduto, currentProduto, logout, carrinho, setCarrinho,quantidade,setQuantidade, qtdeCarrinho, setQtdeCarrinho} = useContext(GlobalContext);
     const { request } = useFetch();
     const navigate = useNavigate()
     const { id } = useParams();
@@ -34,22 +34,23 @@ const Produto = () => {
     function addCarrinho() {
         const produtoExistente = carrinho.find(produto => produto.produto.id === currentProduto.id);
 
+        let novoCarrinho;
         if (produtoExistente) {
-            const novoCarrinho = carrinho.map(produto => 
+            novoCarrinho = carrinho.map(produto =>
                 produto.produto.id === currentProduto.id ? 
-                { ...produto, quantidade: produto.quantidade + quantidade } 
-                    : produto
+                { ...produto, quantidade: produto.quantidade + quantidade } : produto
             );
-            setCarrinho(novoCarrinho);
         } else {
-            setCarrinho([...carrinho, { produto: currentProduto, quantidade }]);
+            novoCarrinho = [...carrinho, { produto: currentProduto, quantidade }];
         }
+
+        setCarrinho(novoCarrinho);
+        window.localStorage.setItem('carrinho', JSON.stringify(novoCarrinho));
+        setQuantidade(1)
     }
 
 
-    useEffect(()=>{
-         console.log(carrinho);
-    },[carrinho])
+
     return (
         <section className={styles.produto}>
             <div className={styles.capaPrincipal}>

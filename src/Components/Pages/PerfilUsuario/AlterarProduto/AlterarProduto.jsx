@@ -23,15 +23,19 @@ const AlterarProduto = () => {
   useEffect(()=>{
     nome.setValue(dataUpdate.nome)
     preco.setValue(dataUpdate.preco)
+
     async function urlToBlob(url) {
       try {
         const response = await fetch(url);
         const blob = await response.blob();
+        const file = new File([blob], 'imagemIgual.png',{type: blob.type});
         const reader = new FileReader();
-         reader.readAsDataURL(blob);
-         reader.onload = () => {
+        reader.readAsDataURL(blob);
+        reader.onload = () => {
+          setPostImg(file)
           setImageExistente(reader.result)
-         }
+        }
+        console.log(postImg);
       } catch (error) {
         console.error('Erro ao obter o Blob:', error);
         return null;
@@ -42,7 +46,7 @@ const AlterarProduto = () => {
 
   async  function handleSubmit(e) {
     e.preventDefault();
-
+    console.log(postImg);
     if (postImg === undefined) {
       setRegexPostImg(true)
     }
@@ -53,10 +57,21 @@ const AlterarProduto = () => {
     ){
       setRegexPostImg(false)
       const formData = new FormData();
+    // Comparar e adicionar campos alterados
+    if (nome.value !== dataUpdate.nome) {
       formData.append('nome', nome.value);
+    }
+
+    if (preco.value !== dataUpdate.preco) {
       formData.append('preco', preco.value);
+    }
+
+    // Adicionar a imagem se ela tiver sido alterada
+    if (postImg !== undefined) {
       formData.append('img_produto', postImg);
-      formData.append('status', true);
+    }
+
+    formData.append('status', true);
   
       const token = window.localStorage.getItem("token");
 

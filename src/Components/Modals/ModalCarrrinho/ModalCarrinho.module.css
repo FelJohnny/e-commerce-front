@@ -1,0 +1,135 @@
+.modalContainer{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    margin: 0px;
+    padding: 0;
+    top: 0;
+    left: 0;
+    background-color: #0000003a;
+    z-index: 200;
+    position: fixed;
+  }
+
+  .modal{
+    background: rgb(38,50,65);  
+    display: flex;
+    width : 400px;
+    height: 100vh;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 10px;
+    box-shadow: 0 0 5px 1px rgba(5, 39, 0, 0.404);
+    position: relative;
+    animation-name: fade;
+    animation-duration: 400ms;
+  }
+
+  .headerCarrinho{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .headerCarrinho h1{
+    font-size: 1.3rem;
+  }
+  .lista{
+    overflow-y: scroll;
+    display: grid;
+    padding: 5px;
+    gap: 20px;
+  }
+
+  .lista::-webkit-scrollbar{
+    background-color: rgb(38,50,65);
+  }
+  .lista::-webkit-scrollbar-thumb{
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .produto{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 100px auto auto auto;
+    height: 180px;
+    grid-template-rows: 30px 15px 20px;
+    grid-template-areas: 
+        "img  nome nome nome"
+        "img  preco preco preco"
+        "img  create create create"
+        "img  qtde qtde qtde";
+    box-shadow: 0px 0px 0px 1px rgba(97, 152, 207, 0.336);    
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.produto img{
+    background-color: rgb(202, 202, 202);
+    border-radius:4px;
+    grid-area: img;
+    object-fit:contain;
+    width: 100%;
+    height: 150px;
+}
+
+.nome{
+    grid-area: nome;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.preco{
+    font-size: 1rem;
+    grid-area: preco;
+}
+
+.createdAt{
+    font-size: 1rem;
+    grid-area: create;
+}
+
+.updatedAt{
+    font-size: 1rem;
+    grid-area: update;
+}
+
+.quantidade{
+    font-size: 1.2rem;
+    grid-area: qtde;
+}
+
+.btnCarrinho{
+    display: grid;
+    gap: 10px;
+}
+
+button {
+    background-color: rgb(0,102,153);
+    color: white;
+    border: none;
+    background-color: #01426A;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    justify-self: end;
+}
+
+.addProduto{
+    width: 100%;
+    background-color: rgb(5, 103, 160);
+}
+
+.finalizarPed{
+    width: 100%;
+    background-color: rgb(3, 120, 136);
+}
+
+button:hover {
+    background-color: rgb(6,116,155);
+}

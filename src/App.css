@@ -106,6 +106,7 @@ body {
   position: relative;
   background-color: rgb(21,29,39);
 }
+
 ol,
 ul {
   list-style: none;
@@ -162,4 +163,15 @@ a {
   }
 
 
+}
+
+
+::-webkit-scrollbar{
+  background-color: rgb(21,29,39);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 5px;
+  
 }

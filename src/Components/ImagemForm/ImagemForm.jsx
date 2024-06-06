@@ -15,7 +15,7 @@ const ImagemForm = ({ label, name, setPostImg, setRegexPostImg, imageExistente }
         setPostImg(selectImage)
         setRegexPostImg(false)
       };
-      
+      console.log(selectImage);
       reader.readAsDataURL(selectImage);
     
 
