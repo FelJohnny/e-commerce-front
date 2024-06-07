@@ -13,6 +13,7 @@ import SVG_verMais from '../../../images/verMais.svg'
 import SVG_cart from '../../../images/shopping_cart.svg'
 import PopUp from '../PopUp/PopUp';
 import ModalCarrinho from '../Modals/ModalCarrrinho/ModalCarrinho';
+import MenuHamburger from '../MenuHamburger/MenuHamburger';
 
 const Header = () => {
   const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, logout, carrinho, setCarrinho, qtdeCarrinho, setQtdeCarrinho} = useContext(GlobalContext);
@@ -77,7 +78,9 @@ const Header = () => {
           <div className={styles.buttonsWrapper}>
             <button onClick={()=> setAtivaModal('cadastroUsuario')}>Cadastre-se</button>
             <button onClick={()=> setAtivaModal('login')}>Entrar</button>
+          <MenuHamburger/>
           </div>
+        
         )
       }
         {userAuth.status && !loading && 
