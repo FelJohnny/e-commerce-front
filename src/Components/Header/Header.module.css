@@ -120,3 +120,16 @@ header button:hover {
         transform: rotate(180deg);
     }
 }
+
+
+
+@media (min-width: 600px) and (max-width: 1024px) {
+   header input{
+    display:  none;
+   }
+}
+@media (min-width: 300px) and (max-width: 599px) {
+   header input{
+    display:  none;
+   }
+}
