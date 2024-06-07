@@ -3,7 +3,7 @@ import styles from './Quantidade.module.css'
 import { GlobalContext } from '../../Context/GlobalContext';
 
 const Quantidade = () => {
-    const { quantidade, setQuantidade} = useContext(GlobalContext);
+    const { quantidade, setQuantidade, ...props} = useContext(GlobalContext);
 
     const incrementar = () => {
       setQuantidade(quantidade + 1);

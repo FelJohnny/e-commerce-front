@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 
 
 export const GlobalContext = createContext();
@@ -10,6 +10,7 @@ export const GlobalStorage = ({ children }) => {
     color: "",
     children: ""
   })
+  const popupTimeoutRef = useRef(null);
 
   const [ativaModal, setAtivaModal] = useState('')
 
@@ -66,6 +67,7 @@ export const GlobalStorage = ({ children }) => {
         carrinho, setCarrinho,
         quantidade, setQuantidade,
         popUp, setPopUp,
+        popupTimeoutRef,
         logout,
         qtdeCarrinho, setQtdeCarrinho,
         calculaValorTotal,

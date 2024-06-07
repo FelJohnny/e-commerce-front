@@ -7,7 +7,7 @@ import useFetch from '../../../Hooks/useFetch.jsx';
 import {GET_TO_ID} from '../../../Api/api.js'
 
 const Produto = () => {
-    const { setCurrentProduto, currentProduto, logout, carrinho, setCarrinho,quantidade,setQuantidade, qtdeCarrinho, setQtdeCarrinho} = useContext(GlobalContext);
+    const { setCurrentProduto, currentProduto, logout, carrinho, setCarrinho,quantidade,setQuantidade, qtdeCarrinho, setQtdeCarrinho, setPopUp,popupTimeoutRef} = useContext(GlobalContext);
     const { request } = useFetch();
     const navigate = useNavigate()
     const { id } = useParams();
@@ -47,6 +47,24 @@ const Produto = () => {
         setCarrinho(novoCarrinho);
         window.localStorage.setItem('carrinho', JSON.stringify(novoCarrinho));
         setQuantidade(1)
+        setPopUp({
+            status:true,
+            color: "#46bba2",
+            children: "Produto Adicionado ao Carrinho"
+        });
+
+        if (popupTimeoutRef.current) {
+            clearTimeout(popupTimeoutRef.current);
+        }
+
+        popupTimeoutRef.current = setTimeout(() => {
+            setPopUp({
+                status: false,
+                color: "",
+                children: ""
+            });
+            popupTimeoutRef.current = null;
+        }, 3000);
     }
 
 

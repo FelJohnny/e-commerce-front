@@ -1,4 +1,3 @@
-import { useContext, useEffect, useState } from 'react'
 import MenuLateral from './MenuLateral/MenuLateral.jsx'
 import styles from './PerfilUsuario.module.css'
 import { Route, Routes, useNavigate } from 'react-router-dom';

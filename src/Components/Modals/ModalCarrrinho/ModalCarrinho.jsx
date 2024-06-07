@@ -2,6 +2,7 @@ import React, { useContext, useRef } from 'react'
 import styles from './ModalCarrinho.module.css'
 import { GlobalContext } from '../../../Context/GlobalContext';
 import { formataData } from '../../../functions/formataData.js';
+import { Link } from 'react-router-dom';
 
 const ModalCarrinho = () => {
 
@@ -42,7 +43,7 @@ const ModalCarrinho = () => {
             </div>
             <div className={styles.btnCarrinho}>
                 <button className={styles.addProduto}>Adicionar mais itens</button>
-                <button className={styles.finalizarPed}>Finalizar Compra</button>
+                <Link to="/pedidos/finalizar" onClick={()=>{setAtivaModal('')}}><button className={styles.finalizarPed}>Finalizar Compra</button></Link>
             </div>
         </div>
     </div>
