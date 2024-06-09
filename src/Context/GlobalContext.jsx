@@ -54,9 +54,18 @@ export const GlobalStorage = ({ children }) => {
 
   const [quantidade, setQuantidade] = useState(1);
 
+  const [quantidades, setQuantidades] = useState({});
+  const updateQuantidade = (id, quantidade) => {
+    setQuantidades(prevQuantidades => ({
+      ...prevQuantidades,
+      [id]: quantidade,
+    }));
+  };
   //===========NECESSARIO PARA RENDERIZAR DADOS PARA ALTERAÇÃO
   const [dataUpdate, setDataUpdate] = useState(null);
 
+
+  const [itensPedido, setItensPedido] = useState([])
   return (
     <GlobalContext.Provider
       value={{  
@@ -66,11 +75,14 @@ export const GlobalStorage = ({ children }) => {
         userAuth, setUserAuth,
         carrinho, setCarrinho,
         quantidade, setQuantidade,
+        quantidades, setQuantidades,
+        updateQuantidade,
         popUp, setPopUp,
         popupTimeoutRef,
         logout,
         qtdeCarrinho, setQtdeCarrinho,
         calculaValorTotal,
+        itensPedido, setItensPedido
       }}
     >
       {children}

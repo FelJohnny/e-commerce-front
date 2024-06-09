@@ -42,7 +42,7 @@ const ModalCarrinho = () => {
                 <p>Valor Total : R$ {calculaValorTotal().toFixed(2)}</p>
             </div>
             <div className={styles.btnCarrinho}>
-                <button className={styles.addProduto}>Adicionar mais itens</button>
+                <Link to={'/'}><button className={styles.addProduto} onClick={()=> setAtivaModal('')}>Adicionar mais itens</button></Link>
                 <Link to="/pedidos/finalizar" onClick={()=>{setAtivaModal('')}}><button className={styles.finalizarPed}>Finalizar Compra</button></Link>
             </div>
         </div>

@@ -138,43 +138,31 @@ export function DELETE_DATA(tableName, id, token) {
   };
 }
 
-//=================Envia email para reset de senha====================//
-export function RECOVER_PASSWORD(tableName,email) {
-  return {
-    url: `${URL}/api/${tableName}/`,
-    options: {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+//=================[autenticado] Cria Pedido====================//
+export function POST_DATA_NOVO_PEDIDO(tableName,token, produtos){
+  return{
+      url:`${URL}/api/${tableName}`,
+      options:{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token} `,
+        },
+        body: JSON.stringify({ produtos }),
       },
-      body: JSON.stringify(email),
-    },
-  };
+  }
 }
 
-//=================[autenticado] definir nova senha====================//
-export function UPDATE_PASSWORD(tableName,newPassword,token) {
+//=================Retorna PEdidos por Usuario====================//
+export function GET_PEDIDOS_POR_USER_ID(id,token) {
   return {
-    url: `${URL}/api/${tableName}/${token}`,
+    url: `${URL}/api/pedido/usuario/${id}`,
     options: {
-      method: "POST",
+      method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token} `,
       },
-      body: JSON.stringify(newPassword),
-    },
-  };
-}
-//=================Envio de email====================//
-export function SEND_EMAIL(emailBody) {
-  return {
-    url: `${URL}/api/send-email`,
-    options: {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(emailBody),
     },
   };
 }

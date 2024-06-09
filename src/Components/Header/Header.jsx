@@ -14,6 +14,7 @@ import SVG_cart from '../../../images/shopping_cart.svg'
 import PopUp from '../PopUp/PopUp';
 import ModalCarrinho from '../Modals/ModalCarrrinho/ModalCarrinho';
 import MenuHamburger from '../MenuHamburger/MenuHamburger';
+import ModalItensPedidos from '../Modals/ModalItensPedidos/ModalItensPedidos';
 
 const Header = () => {
   const { setAtivaModal, ativaModal,setUserAuth,userAuth, popUp, logout, carrinho, setCarrinho, qtdeCarrinho, setQtdeCarrinho} = useContext(GlobalContext);
@@ -65,7 +66,6 @@ const Header = () => {
       })
     }
     calculaQtdeCarrinho()
-    console.log(carrinho);
   },[carrinho])
   return (
   <>
@@ -105,6 +105,7 @@ const Header = () => {
     <ModalCadastroUsuario/>
     <ModalLogin/>
     <ModalCarrinho/>
+    <ModalItensPedidos/>
   </>
 
   )

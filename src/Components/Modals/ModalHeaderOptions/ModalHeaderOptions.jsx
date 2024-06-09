@@ -17,10 +17,6 @@ const ModalHeaderOptions = () => {
     navigate('/')
     window.location.reload();
   }
-
-  useEffect(()=>{
-    console.log(logoutModal);
-  },[logoutModal])
   return (
     <>
     <nav className={`${styles.containerModal+' '+styles.animationUpButton} `}>

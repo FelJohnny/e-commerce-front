@@ -32,6 +32,28 @@ const Produto = () => {
     },[])
     
     function addCarrinho() {
+        console.log(quantidade);
+        if (quantidade === null || quantidade === 0 || quantidade === "") {
+            setPopUp({
+                status:true,
+                color: "#e74f4f",
+                children: "Insira uma quantidade para prosseguir"
+            });
+    
+            if (popupTimeoutRef.current) {
+                clearTimeout(popupTimeoutRef.current);
+            }
+    
+            popupTimeoutRef.current = setTimeout(() => {
+                setPopUp({
+                    status: false,
+                    color: "",
+                    children: ""
+                });
+                popupTimeoutRef.current = null;
+            }, 3000);
+            return;
+        }
         const produtoExistente = carrinho.find(produto => produto.produto.id === currentProduto.id);
 
         let novoCarrinho;
@@ -76,7 +98,7 @@ const Produto = () => {
                 <div className={styles.descricoes}>
                     <h1>{currentProduto.nome}</h1>
                     <div className={styles.precoContainer}>
-                        <span className={styles.precoOriginal}>R$ 250,00</span>
+                        <span className={styles.precoOriginal}>R$ {currentProduto.preco + 40},00</span>
                         <span className={styles.precoAtual}>R$ {currentProduto.preco}</span>
                         <span className={styles.desconto}>{currentProduto.desconto}% OFF</span>
                     </div>
