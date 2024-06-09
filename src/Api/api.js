@@ -1,5 +1,5 @@
 // const URL = "http://localhost:3333";
-const URL = "http://54.232.171.58:3333";
+const URL = "https://54.232.171.58";
 //=================LOGIN/REGISTER====================//
 
 export function POST_LOGIN(dataLogin) {
