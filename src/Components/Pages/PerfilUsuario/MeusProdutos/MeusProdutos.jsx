@@ -76,7 +76,7 @@ const MeusProdutos = () => {
               <span className={styles.createdAt}>criado em:{formataData(produto.createdAt)}</span>
               <span className={styles.updatedAt}>ultima atulização:{formataData(produto.updatedAt)}</span>
               <div className={styles.buttons}>
-                <button>Visualizar</button>
+                <Link to={`/produto/${produto.id}`}><button>Visualizar</button></Link>
                 <button onClick={()=>confirmUpdate(produto)}>Alterar</button>
                 <button onClick={()=>confirmDelete(produto)}>Excluir</button>
               </div>

@@ -23,6 +23,7 @@ const ModalHeaderOptions = () => {
       <ul className={styles.options}>
         <Link to='perfil/meus_dados'><li>Meu Perfil</li></Link>
         <Link to='perfil/produtos'><li> Meus Produtos</li></Link>
+        <Link to='perfil/pedidos'><li> Meus Pedidos</li></Link>
         <li onClick={()=>logout()}>Sair</li>
         {/* {userAuth.rule === 3 && <li onClick={()=>navigate('/adm')}>Painel de Controle</li>} */}
       </ul>

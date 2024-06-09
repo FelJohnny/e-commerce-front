@@ -3,7 +3,7 @@ import styles from './FinalizarPedido.module.css';
 import { GlobalContext } from '../../../Context/GlobalContext';
 import { formataData } from '../../../functions/formataData.js';
 import QuantidadeFPedido from '../../QuantidadeFPedido/QuantidadeFPedido.jsx';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { POST_DATA_NOVO_PEDIDO } from '../../../Api/api.js';
 import useFetch from '../../../Hooks/useFetch.jsx'
 import Loading from '../../Loading/Loading.jsx';
@@ -13,6 +13,7 @@ const FinalizarPedido = () => {
   const [qtdeTotal, setQtdeTotal] = useState(0);
   const [valorTotal, setValorTotal] = useState(0);
   const { request, data, error, loading } = useFetch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const calcularTotais = () => {
@@ -48,6 +49,7 @@ const FinalizarPedido = () => {
       window.localStorage.removeItem('carrinho')
       setCarrinho([]);
       setQtdeCarrinho(0)
+      navigate('/perfil/pedidos')
       setPopUp({
         status:true,
         color: "#46bba2",

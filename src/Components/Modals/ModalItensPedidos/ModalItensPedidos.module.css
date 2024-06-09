@@ -1,5 +1,3 @@
-/* ModalItensPedidos.module.css */
-
 .containerModal {
   display: flex;
   justify-content: center;
@@ -22,6 +20,10 @@
   background: rgb(38,50,65);
   animation-name: fade;
   animation-duration: 400ms;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .modal h1 {
@@ -42,41 +44,19 @@
   }
 }
 
-.close {
-  position: absolute;
-  font-size: 1.1rem;
-  border: solid 2px white;
-  color: white;
-  padding: 5px 10px;
-  right: -10px;
-  top: -10px;
-  border-radius: 50%;
-  background-color: #01426A;
-  cursor: pointer;
-}
-
-.containerItens{
+.containerItens {
   padding: 10px;
-  height: 600px;
-  overflow-y: scroll;
-
-}
-
-.close:hover {
-  transform: scale(1.05);
-  transition: 0.3s;
 }
 
 .produto {
   display: grid;
   gap: 10px;
-  grid-template-columns: 200px auto auto auto;
-  grid-template-rows: auto auto;
-  height: auto;
+  grid-template-columns: 200px auto auto;
+  grid-template-rows: auto auto auto;
   grid-template-areas: 
-    "img nome nome nome"
-    "img qtde preco preco1"
-    "img key key key";
+    "img nome nome"
+    "img qtde preco"
+    "img key key";
   margin-bottom: 20px;
   box-shadow: 0px 0px 0px 1px rgba(97, 152, 207, 0.336);    
   border-radius: 5px;
@@ -108,11 +88,7 @@
   grid-area: preco;
 }
 
-.preco1 {
-  grid-area: preco1;
-}
-
-.key{
+.key {
   grid-area: key;
   justify-self: center;
   align-self: self-start;
@@ -122,8 +98,25 @@
   transition: 0.1s;
 }
 
-.key:hover{
+.key:hover {
   scale: 1.03;
   cursor: pointer;
-  
+}
+
+@media (max-width: 600px) {
+  .produto {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "img"
+      "nome"
+      "qtde"
+      "preco"
+      "key";
+  }
+
+  .produto img {
+    width: 100%;
+    height: auto;
+  }
 }

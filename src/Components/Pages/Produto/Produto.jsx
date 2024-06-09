@@ -5,6 +5,7 @@ import Quantidade from '../../Quantidade/Quantidade.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../../../Hooks/useFetch.jsx';
 import {GET_TO_ID} from '../../../Api/api.js'
+import Loading from '../../Loading/Loading.jsx';
 
 const Produto = () => {
     const { setCurrentProduto, currentProduto, logout, carrinho, setCarrinho,quantidade,setQuantidade, qtdeCarrinho, setQtdeCarrinho, setPopUp,popupTimeoutRef} = useContext(GlobalContext);
@@ -89,14 +90,14 @@ const Produto = () => {
         }, 3000);
     }
 
-
-
     return (
         <section className={styles.produto}>
-            <div className={styles.capaPrincipal}>
+            {!currentProduto || !currentProduto.usuario_produto ?<Loading/>:(
+                <div className={styles.capaPrincipal}>
                 <img className={styles.imgProduto} src={currentProduto.url_img_produto} alt={`Imagem_produto${currentProduto.id}`} />
                 <div className={styles.descricoes}>
                     <h1>{currentProduto.nome}</h1>
+                    {currentProduto&& <p>Vendedor: {currentProduto.usuario_produto.nome_completo}</p>}
                     <div className={styles.precoContainer}>
                         <span className={styles.precoOriginal}>R$ {currentProduto.preco + 40},00</span>
                         <span className={styles.precoAtual}>R$ {currentProduto.preco}</span>
@@ -123,6 +124,7 @@ const Produto = () => {
                     </div>
                 </div>
             </div>
+            )}
         </section>
     );
 }

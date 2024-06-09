@@ -1,10 +1,10 @@
-.containerMeuPerfil{
+.containerMeuPerfil {
     background-color: rgb(38,50,65);
     padding: 20px;
     border-radius: 5px;
 }
 
-.pedido{
+.pedido {
     display: grid;
     gap: 10px;
     margin-bottom: 20px;
@@ -13,25 +13,39 @@
     padding: 10px;
 }
 
-.pedido h1{
+.pedido h1 {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.infoPedido{
+.infoPedido {
     display: grid;
     grid-template-columns: 1fr 200px;
     gap: 10px;
 }
 
-.infoPedido button{
+.infoPedido button {
     align-self: start;
 }
 
-
-.infoPedido2{
+.infoPedido2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    
+}
+
+@media (max-width: 940px) {
+    .infoPedido {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .infoPedido2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .infoPedido button {
+        align-self: center;
+    }
 }

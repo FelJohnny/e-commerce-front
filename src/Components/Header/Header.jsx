@@ -78,7 +78,6 @@ const Header = () => {
           <div className={styles.buttonsWrapper}>
             <button onClick={()=> setAtivaModal('cadastroUsuario')}>Cadastre-se</button>
             <button onClick={()=> setAtivaModal('login')}>Entrar</button>
-          <MenuHamburger/>
           </div>
         
         )
